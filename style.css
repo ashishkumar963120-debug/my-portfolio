@@ -521,3 +521,96 @@ footer {
         -webkit-overflow-scrolling: touch;
     }
 }
+
+/* --- Portrait Video Resume Styling --- */
+.video-container-portrait {
+    max-width: 350px; /* Standard portrait width for desktop */
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* --- 13. Video Resume Section (Optimized) --- */
+
+#video-resume {
+    padding: 80px 0;
+}
+
+.video-wrapper-portrait {
+    position: relative;
+    max-width: 320px; /* Standard mobile-portrait width on desktop */
+    margin: 0 auto;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 4px solid #0f172a; /* Tech-dark frame */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.resume-video-portrait {
+    width: 100%;
+    aspect-ratio: 9 / 16; /* Keeps vertical shape even before play */
+    display: block;
+    object-fit: cover;
+    background-color: #000;
+    cursor: pointer;
+}
+
+.center-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(37, 99, 235, 0.9); /* LPU Blue-ish accent */
+    color: white;
+    border: none;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    /* Smooth transitions for all states */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+}
+
+.center-play-btn i {
+    margin-left: 5px; /* Centers the triangle icon visually */
+}
+
+.center-play-btn:hover {
+    background: #2563eb;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
+}
+
+/* --- Toggle Logic (Controlled by script.js) --- */
+
+/* Fades out the button when the video is playing */
+.video-playing .center-play-btn {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Mobile Adjustment for smaller screens */
+@media (max-width: 480px) {
+    .video-wrapper-portrait {
+        max-width: 280px;
+    }
+    
+    .center-play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+}

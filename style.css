@@ -541,7 +541,7 @@ footer {
 
 .video-wrapper-portrait {
     position: relative;
-    max-width: 320px; /* Standard mobile-portrait width on desktop */
+    max-width: 280px; /* Standard mobile-portrait width on desktop */
     margin: 0 auto;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.1);

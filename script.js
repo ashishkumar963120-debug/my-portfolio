@@ -1,60 +1,43 @@
-/**
- * Scroll Reveal Animation
- * Handles elements popping into view as the user scrolls
- */
-const reveal = () => {
-    const reveals = document.querySelectorAll(".reveal");
-    const windowHeight = window.innerHeight;
-    const elementVisible = 150; // Threshold in pixels
-
-    reveals.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top;
-
-        if (elementTop < windowHeight - elementVisible) {
-            element.classList.add("active");
-        }
-    });
-};
-
-// Event listeners for scroll and initial load
-window.addEventListener("scroll", reveal);
-window.addEventListener("load", reveal);
-
-
-/**
- * Video Resume Controller
- * Handles custom play/pause behavior for the portrait video
- */
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('resumeVideo');
-    const playBtn = document.getElementById('playBtn');
-    const wrapper = document.querySelector('.video-wrapper-portrait');
+    // --- 1. CV Modal Logic ---
+    const cvModal = document.getElementById('cvModal');
+    const openCvBtn = document.getElementById('openCvModal');
+    const closeCvBtn = document.getElementById('closeCvModal');
 
-    // Functional check: Only proceed if elements exist
-    if (video && playBtn && wrapper) {
-        
-        const togglePlay = () => {
-            if (video.paused) {
-                video.play();
-                wrapper.classList.add('video-playing');
-                // Change icon to pause when playing
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                video.pause();
-                wrapper.classList.remove('video-playing');
-                // Change icon back to play when paused
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        };
+    if (openCvBtn && cvModal && closeCvBtn) {
+        openCvBtn.addEventListener('click', () => {
+            cvModal.style.display = 'flex';
+        });
 
-        // Listeners for both the button and the video surface
-        playBtn.addEventListener('click', togglePlay);
-        video.addEventListener('click', togglePlay);
-
-        // Reset UI when video finishes
-        video.addEventListener('ended', () => {
-            wrapper.classList.remove('video-playing');
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        closeCvBtn.addEventListener('click', () => {
+            cvModal.style.display = 'none';
         });
     }
+
+    // --- 2. Contact Modal Logic ---
+    const contactModal = document.getElementById('contactModal');
+    const openContactBtn = document.getElementById('openContactModal');
+    const closeContactBtn = contactModal ? contactModal.querySelector('.close-btn') : null;
+
+    if (openContactBtn && contactModal) {
+        openContactBtn.addEventListener('click', () => {
+            contactModal.style.display = 'flex';
+        });
+    }
+
+    if (closeContactBtn && contactModal) {
+        closeContactBtn.addEventListener('click', () => {
+            contactModal.style.display = 'none';
+        });
+    }
+
+    // --- 3. Outside Click Handler for Both Modals ---
+    window.addEventListener('click', (event) => {
+        if (cvModal && event.target === cvModal) {
+            cvModal.style.display = 'none';
+        }
+        if (contactModal && event.target === contactModal) {
+            contactModal.style.display = 'none';
+        }
+    });
 });
